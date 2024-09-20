@@ -10,6 +10,8 @@ import (
 	"github.com/wyx2685/UniProxy/common/balance"
 )
 
+var Custom_UA = "Custom_RTX1080_Ti_Browser"
+
 var (
 	clients *balance.List[*resty.Client]
 	etag    string
@@ -19,6 +21,7 @@ func Init(b string, url []string, auth string) {
 	cs := make([]*resty.Client, len(url))
 	for i, u := range url {
 		cs[i] = resty.New().
+			SetHeader("User-Agent", Custom_UA).
 			SetTimeout(time.Second*40).
 			SetQueryParam("auth_data", auth).
 			SetBaseURL(u).
