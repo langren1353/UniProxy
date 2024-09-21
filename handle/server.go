@@ -33,7 +33,8 @@ func GetServers(c *gin.Context) {
 		servers = make(map[string]*v2b.ServerInfo, len(r))
 		for i := range r {
 			servers[fmt.Sprintf(
-				"%s_%d",
+				"%d_%s_%d",
+				i + 1000,
 				r[i].Type,
 				r[i].Id,
 			)] = &r[i]
